@@ -1,27 +1,18 @@
-async function summarizeTOS() {
-    const tosText = document.getElementById('tos-input').value;
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000;
 
-    // Fetch the API key from environment variables
-    const response = await fetch('/get-api-key');
-    const apiKeyData = await response.json();
-    const apiKey = apiKeyData.apiKey;
+// Use dotenv to manage environment variables
+require('dotenv').config();
 
-    document.getElementById('loading-indicator').style.display = 'block';
+// Serve static files from the 'public' directory
+app.use(express.static('public'));
 
-    const apiResponse = await fetch('https://api.anthropic.com/v1/claude', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${apiKey}`
-        },
-        body: JSON.stringify({
-            prompt: `Please summarize the following Terms of Service and highlight any important points or red flags:\n\n${tosText}`,
-            max_tokens: 300 // Adjust as needed
-        })
-    });
+// Endpoint to provide the API key
+app.get('/get-api-key', (req, res) => {
+    res.json({ apiKey: process.env.ANTHROPIC_API_KEY });
+});
 
-    const data = await apiResponse.json();
-    document.getElementById('loading-indicator').style.display = 'none';
-    document.getElementById('summary-output').innerText = data.summary || "No summary available.";
-    document.getElementById('red-flags-output').innerText = data.red_flags || "No red flags identified.";
-}
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
