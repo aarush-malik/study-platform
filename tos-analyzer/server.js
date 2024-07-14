@@ -38,7 +38,13 @@ app.post('/api/summarize', async (req, res) => {
         });
 
         const data = await apiResponse.json();
-        res.json(data);
+        console.log('API Response:', data);  // Debug log for API response
+
+        if (data.choices && data.choices[0].text) {
+            res.json({ summary: data.choices[0].text, red_flags: data.red_flags || "No red flags identified." });
+        } else {
+            res.json({ summary: "No summary available.", red_flags: "No red flags identified." });
+        }
     } catch (error) {
         console.error('Error fetching from Anthropic API:', error);
         res.status(500).send('Error fetching from Anthropic API');
