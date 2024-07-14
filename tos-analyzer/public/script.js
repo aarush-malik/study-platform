@@ -16,6 +16,7 @@ async function summarizeTOS() {
 
         const data = await apiResponse.json();
         document.getElementById('loading-indicator').style.display = 'none';
+
         document.getElementById('summary-output').innerText = data.summary || "No summary available.";
         document.getElementById('red-flags-output').innerText = data.red_flags || "No red flags identified.";
     } catch (error) {
