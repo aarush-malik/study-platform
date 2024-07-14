@@ -1,5 +1,4 @@
 const express = require('express');
-const fetch = require('node-fetch');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -25,6 +24,7 @@ app.post('/api/summarize', async (req, res) => {
     const apiKey = process.env.ANTHROPIC_API_KEY;
 
     try {
+        const fetch = await import('node-fetch').then(module => module.default);
         const apiResponse = await fetch('https://api.anthropic.com/v1/claude', {
             method: 'POST',
             headers: {
