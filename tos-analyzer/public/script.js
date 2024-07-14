@@ -1,3 +1,5 @@
+document.getElementById('summarize-btn').addEventListener('click', summarizeTOS);
+
 async function summarizeTOS() {
     const tosText = document.getElementById('tos-input').value;
 
