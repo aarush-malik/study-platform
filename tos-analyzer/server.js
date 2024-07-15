@@ -38,7 +38,7 @@ app.post('/api/summarize', async (req, res) => {
         });
 
         const data = await apiResponse.json();
-        console.log('API Response:', JSON.stringify(data, null, 2));  // Log the full response
+        console.log('Full API Response:', JSON.stringify(data, null, 2));  // Log the full response
 
         if (data.choices && data.choices.length > 0 && data.choices[0].text) {
             res.json({ summary: data.choices[0].text, red_flags: data.red_flags || "No red flags identified." });
