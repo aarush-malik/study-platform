@@ -5,17 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service Analyzer</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>Terms of Service Analyzer</h1>
-        <textarea id="tos-input" placeholder="Paste the terms of service here..."></textarea>
-        <button onclick="summarizeTOS()">Summarize</button>
+        <div class="header">
+            <h1>Terms of Service Analyzer</h1>
+        </div>
+        <div class="input-section">
+            <textarea id="tos-input" placeholder="Paste the terms of service here..."></textarea>
+            <button onclick="summarizeTOS()">Summarize</button>
+        </div>
         <div id="loading-indicator" class="loading">Loading...</div>
-        <h2>Summary</h2>
-        <div id="summary-output" class="output"></div>
-        <h2>Red Flags</h2>
-        <div id="red-flags-output" class="output"></div>
+        <div class="output-section">
+            <div class="output-box">
+                <h2>Summary</h2>
+                <div id="summary-output" class="output"></div>
+            </div>
+            <div class="output-box">
+                <h2>Red Flags</h2>
+                <div id="red-flags-output" class="output"></div>
+            </div>
+        </div>
     </div>
     <a href="https://www.buymeacoffee.com/yourusername" class="bmc-button" target="_blank">
         <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="width: 150px;">
